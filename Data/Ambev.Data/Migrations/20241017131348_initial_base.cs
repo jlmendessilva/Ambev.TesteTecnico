@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Ambev.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class base_initial : Migration
+    public partial class initial_base : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -36,8 +36,7 @@ namespace Ambev.Data.Migrations
                     ProdutoId = table.Column<Guid>(type: "uuid", nullable: false),
                     Quantidade = table.Column<int>(type: "integer", nullable: false),
                     ValorUnitario = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
-                    Desconto = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
-                    VendaId1 = table.Column<Guid>(type: "uuid", nullable: false)
+                    Desconto = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -48,23 +47,12 @@ namespace Ambev.Data.Migrations
                         principalTable: "Venda",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ItensVenda_Venda_VendaId1",
-                        column: x => x.VendaId1,
-                        principalTable: "Venda",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ItensVenda_VendaId",
                 table: "ItensVenda",
                 column: "VendaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ItensVenda_VendaId1",
-                table: "ItensVenda",
-                column: "VendaId1");
         }
 
         /// <inheritdoc />

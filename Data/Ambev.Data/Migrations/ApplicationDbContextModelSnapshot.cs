@@ -45,14 +45,9 @@ namespace Ambev.Data.Migrations
                     b.Property<Guid>("VendaId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("VendaId1")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
 
                     b.HasIndex("VendaId");
-
-                    b.HasIndex("VendaId1");
 
                     b.ToTable("ItensVenda");
                 });
@@ -86,15 +81,9 @@ namespace Ambev.Data.Migrations
 
             modelBuilder.Entity("Ambev.Domain.ItemVenda", b =>
                 {
-                    b.HasOne("Ambev.Domain.Venda", null)
+                    b.HasOne("Ambev.Domain.Venda", "Venda")
                         .WithMany("Itens")
                         .HasForeignKey("VendaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Ambev.Domain.Venda", "Venda")
-                        .WithMany()
-                        .HasForeignKey("VendaId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
