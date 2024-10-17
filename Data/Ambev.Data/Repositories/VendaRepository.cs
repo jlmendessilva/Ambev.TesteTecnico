@@ -1,4 +1,5 @@
 ﻿
+using Ambev.Data.Context;
 using Ambev.Data.Interfaces;
 using Ambev.Domain;
 
@@ -6,24 +7,38 @@ namespace Ambev.Data.Repositories
 {
     public class VendaRepository : IVendaRepository
     {
-        private readonly List<Venda> _vendas = new List<Venda>();
+        private ApplicationDbContext _context;
+
+        public VendaRepository(ApplicationDbContext context)
+        {
+                _context = context;
+        }
 
         public void Adicionar(Venda venda)
         {
-            _vendas.Add(venda);
+            _context.Venda.Add(venda);
+            _context.SaveChanges();
         }
 
         public Venda ObterPorId(Guid id)
         {
-            return _vendas.FirstOrDefault(v => v.Id == id);
+            return _context.Venda.FirstOrDefault(v => v.Id == id);
         }
 
         public void Atualizar(Venda venda)
         {
             var vendaExistente = ObterPorId(venda.Id);
+
             if (vendaExistente != null)
             {
-                vendaExistente = venda;
+                vendaExistente.setDataUpdated();
+                vendaExistente.setCliendId(venda.ClienteId);
+                vendaExistente.setFilial(venda.Filial);
+                vendaExistente.AtualizaItens(venda.Itens);
+                vendaExistente.setValorTotal();
+
+                _context.Venda.Add(vendaExistente);
+                _context.SaveChanges();
             }
         }
 
@@ -32,7 +47,7 @@ namespace Ambev.Data.Repositories
             var venda = ObterPorId(id);
             if (venda != null)
             {
-                _vendas.Remove(venda);
+                _context.Venda.Remove(venda);
             }
         }
     }
