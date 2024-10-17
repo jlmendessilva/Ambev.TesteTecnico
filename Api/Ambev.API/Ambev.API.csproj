@@ -14,4 +14,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Ambev.Data\Ambev.Data.csproj" />
+  </ItemGroup>
+
 </Project>
