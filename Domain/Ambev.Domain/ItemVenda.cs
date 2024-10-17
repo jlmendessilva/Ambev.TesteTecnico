@@ -11,6 +11,11 @@
         public decimal ValorTotal => (ValorUnitario * Quantidade) - Desconto;
         public Venda Venda { get; private set; }
 
+        public ItemVenda()
+        {
+                
+        }
+
         public ItemVenda(Guid vendaId, Guid produtoId, int quantidade, decimal valorUnitario, decimal desconto)
         {
             Id = Guid.NewGuid();

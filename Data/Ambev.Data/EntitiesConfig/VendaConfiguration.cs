@@ -11,7 +11,10 @@ namespace b3digitas.Infra.Data.EntitiesConfiguration
         {
             builder.HasKey(p => p.Id);
 
-            builder.Property(p => p.Data)
+            builder.Property(p => p.DataCreated)
+                .HasColumnType("timestamp without time zone");
+
+            builder.Property(p => p.DataUpdated)
                 .HasColumnType("timestamp without time zone");
 
             builder.Property(p => p.ClienteId)
@@ -22,9 +25,6 @@ namespace b3digitas.Infra.Data.EntitiesConfiguration
                 .IsRequired();
 
             builder.Property(p => p.Filial)
-                .IsRequired();
-
-            builder.Property(p => p.Cancelado)
                 .IsRequired();
 
         }

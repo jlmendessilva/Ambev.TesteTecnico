@@ -20,13 +20,14 @@
             Filial = filial;
             Itens = new List<ItemVenda>();
             Cancelado = false;
+            Finalizada = false;
         }
 
         public void setDataUpdated() => DataUpdated = DateTime.Now;
         public void setCliendId(Guid clienteId) => ClienteId = clienteId; 
         public void setValorTotal() => CalcularValorTotal();
         public void setFilial(Guid filial) =>  Filial = filial; 
-        public void setCanelado(bool canelado = true) => Cancelado = canelado;
+        public void setCanelado(bool canelado = false) => Cancelado = canelado;
         public void setFinalizada(bool finalizada = false) => Finalizada = finalizada;
 
         public void AdicionarNovoItem(ItemVenda item)
