@@ -6,11 +6,11 @@
         public DateTime Data { get; private set; }
         public Guid ClienteId { get; private set; }
         public decimal ValorTotal { get; private set; }
-        public string Filial { get; private set; }
+        public Guid Filial { get; private set; }
         public List<ItemVenda> Itens { get; private set; }
         public bool Cancelado { get; private set; }
 
-        public Venda(Guid clienteId, string filial)
+        public Venda(Guid clienteId, Guid filial)
         {
             Id = Guid.NewGuid();
             Data = DateTime.Now;
