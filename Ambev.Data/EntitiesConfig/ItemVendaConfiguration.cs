@@ -12,7 +12,7 @@ namespace Ambev.Data.EntitiesConfig
 
             builder.HasKey(p => p.Id);
 
-            builder.Property(i => i.VendaId)
+            builder.Property(p => p.VendaId)
             .IsRequired();
 
             builder.Property(p => p.ProdutoId)
@@ -28,9 +28,9 @@ namespace Ambev.Data.EntitiesConfig
             builder.Property(p => p.Desconto)
                 .HasPrecision(10, 2);
 
-            builder.HasOne(i => i.Venda)
+            builder.HasOne(p => p.Venda)
             .WithMany() 
-            .HasForeignKey(i => i.VendaId);
+            .HasForeignKey(p => p.VendaId);
         }
     }
 }
