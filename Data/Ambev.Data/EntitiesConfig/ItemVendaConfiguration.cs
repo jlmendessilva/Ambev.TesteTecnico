@@ -19,6 +19,7 @@ namespace Ambev.Data.EntitiesConfig
                 .IsRequired();
 
             builder.Property(p => p.Quantidade)
+                .HasPrecision(10, 2)
                 .IsRequired();
 
             builder.Property(p => p.ValorUnitario)
