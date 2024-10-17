@@ -27,11 +27,6 @@ namespace b3digitas.Infra.Data.EntitiesConfiguration
             builder.Property(p => p.Cancelado)
                 .IsRequired();
 
-            builder.HasMany(p => p.Itens)
-                .WithOne()
-                .HasForeignKey("VendaId"); 
-
-
         }
     }
 }

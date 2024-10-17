@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Ambev.Data\Ambev.Data.csproj" />
+    <ProjectReference Include="..\..\Data\Ambev.Data\Ambev.Data.csproj" />
   </ItemGroup>
 
 </Project>

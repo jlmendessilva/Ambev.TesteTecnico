@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Domain\Ambev.Domain\Ambev.Domain.csproj" />
     <ProjectReference Include="..\Domain\Ambev.Domain\Ambev.Domain.csproj" />
   </ItemGroup>
 
