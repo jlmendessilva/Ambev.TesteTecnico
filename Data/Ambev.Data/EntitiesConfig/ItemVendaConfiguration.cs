@@ -29,7 +29,7 @@ namespace Ambev.Data.EntitiesConfig
                 .HasPrecision(10, 2);
 
             builder.HasOne(p => p.Venda)
-            .WithMany() 
+            .WithMany(v => v.Itens) 
             .HasForeignKey(p => p.VendaId);
         }
     }
