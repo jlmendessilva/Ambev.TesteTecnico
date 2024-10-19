@@ -15,6 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ambev.API", "Api\Ambev.API\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ambev.Data", "Data\Ambev.Data\Ambev.Data.csproj", "{15FB93C7-1DDE-4810-AC96-EBD10D0B44A2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C59B5981-696A-473D-8768-F8C45A58F81D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ambev.UnitTests", "Tests\Ambev.UnitTests\Ambev.UnitTests.csproj", "{44FA52AD-F634-4ED6-A5BC-AA27A56708F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,10 @@ Global
 		{15FB93C7-1DDE-4810-AC96-EBD10D0B44A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15FB93C7-1DDE-4810-AC96-EBD10D0B44A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15FB93C7-1DDE-4810-AC96-EBD10D0B44A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44FA52AD-F634-4ED6-A5BC-AA27A56708F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44FA52AD-F634-4ED6-A5BC-AA27A56708F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44FA52AD-F634-4ED6-A5BC-AA27A56708F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44FA52AD-F634-4ED6-A5BC-AA27A56708F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +49,7 @@ Global
 		{4B4F36A2-89EB-478C-A874-140F1EC7176D} = {19242970-E0AF-4525-AEF2-4F41936370BF}
 		{65487B1A-ECB9-4100-B7F5-9D5E5F012740} = {B396D4DF-C297-42EA-8C43-06721C96EB02}
 		{15FB93C7-1DDE-4810-AC96-EBD10D0B44A2} = {B86C28F3-DDEF-479A-A17F-93F42937BD61}
+		{44FA52AD-F634-4ED6-A5BC-AA27A56708F4} = {C59B5981-696A-473D-8768-F8C45A58F81D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {94A95237-8AD9-4042-9E92-99A133B203D6}
