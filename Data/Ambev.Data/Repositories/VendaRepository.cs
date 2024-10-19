@@ -1,7 +1,8 @@
 ﻿
 using Ambev.Data.Context;
 using Ambev.Data.Interfaces;
-using Ambev.Domain;
+using Ambev.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ambev.Data.Repositories
 {
@@ -14,41 +15,76 @@ namespace Ambev.Data.Repositories
                 _context = context;
         }
 
-        public void Adicionar(Venda venda)
+        public async Task<Venda> CreateAsync(Venda venda)
         {
-            _context.Venda.Add(venda);
-            _context.SaveChanges();
+             _context.Venda.Add(venda);
+             await _context.SaveChangesAsync();
+
+            return venda;
         }
 
-        public Venda ObterPorId(Guid id)
+        public async Task<Venda> GetByNumberAsync(int numero)
         {
-            return _context.Venda.FirstOrDefault(v => v.Id == id);
+            return await _context.Venda.FirstOrDefaultAsync(x => x.Numero == numero);
         }
 
-        public void Atualizar(Venda venda)
+        public async Task<Venda> GetByIdAsync(Guid id)
         {
-            var vendaExistente = ObterPorId(venda.Id);
+            return await _context.Venda.Include(x => x.Itens).FirstOrDefaultAsync(x => x.Id == id);
+        }
 
-            if (vendaExistente != null)
-            {
-                vendaExistente.setDataUpdated();
-                vendaExistente.setCliendId(venda.ClienteId);
-                vendaExistente.setFilial(venda.Filial);
+        public async Task<Venda> UpdateAsync(Guid id, Venda venda)
+        {
+            var vendaExistente = await GetByIdAsync(id);
+
+            if (vendaExistente == null)
+                throw new Exception("Venda não encontrada.");
+
+            vendaExistente.setDataAtualizacao();
+            vendaExistente.setCliendId(venda.ClienteId);
+            vendaExistente.setFilial(venda.Filial);
+
+            if(venda.Itens.Count > 0)
                 vendaExistente.AtualizaItens(venda.Itens);
-                vendaExistente.setValorTotal();
 
-                _context.Venda.Add(vendaExistente);
-                _context.SaveChanges();
-            }
+            vendaExistente.setValorTotal();
+
+            _context.Venda.Update(vendaExistente);
+            await _context.SaveChangesAsync();
+
+
+            return vendaExistente;
         }
 
-        public void Remover(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            var venda = ObterPorId(id);
-            if (venda != null)
-            {
-                _context.Venda.Remove(venda);
-            }
+            var venda = await GetByIdAsync(id);
+
+            if (venda == null)
+                throw new Exception("Venda não encontrada.");
+
+            _context.Venda.Remove(venda);
+            await _context.SaveChangesAsync();
+
         }
+
+        public async Task<IEnumerable<Venda>> GetAllAsync()
+        {
+            return await _context.Venda.Include(x => x.Itens).ToListAsync();
+        }
+
+        public async Task<Venda> AddItemAsync(Guid id, IEnumerable<ItemVenda> itens)
+        {
+            var venda = await GetByIdAsync(id);
+
+            if (venda == null)
+                throw new Exception("Venda não encontrada.");
+
+            venda.Itens.AddRange(itens);
+            return await UpdateAsync(id, venda);
+
+
+        }
+
     }
 }
