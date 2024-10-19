@@ -3,6 +3,7 @@ using System;
 using Ambev.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Ambev.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241017204906_atualizacao_campos_tabela_venda")]
+    partial class atualizacao_campos_tabela_venda
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,13 +94,6 @@ namespace Ambev.Data.Migrations
                     b.Property<bool>("Finalizada")
                         .HasColumnType("boolean")
                         .HasAnnotation("Relational:JsonPropertyName", "finalizada");
-
-                    b.Property<int>("Numero")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Relational:JsonPropertyName", "numero");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Numero"));
 
                     b.Property<decimal>("ValorTotal")
                         .HasPrecision(10, 2)
