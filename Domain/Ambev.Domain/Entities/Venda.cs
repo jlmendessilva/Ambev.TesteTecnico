@@ -54,6 +54,10 @@ namespace Ambev.Domain.Entities
             Itens = new List<ItemVenda>();
         }
 
+        public Venda(Guid id)
+        {
+            Id = id;
+        }
 
         public void setDataAtualizacao() => DataAtualizacao = DateTime.Now;
         public void setCliendId(Guid clienteId) => ClienteId = clienteId;
