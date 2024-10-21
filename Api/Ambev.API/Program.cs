@@ -2,8 +2,8 @@ using Ambev.API.Services;
 using Ambev.API.Services.Interfaces;
 using Ambev.API.Services.Mappings;
 using Ambev.IOC;
-using Ambev.MessageBus.MessageBroker.RabbitMq;
-using Ambev.MessageBus.Publicacao.Services;
+using Ambev.EventoMenssage.MessageBroker.RabbitMq;
+using Ambev.EventoMenssage.Publicacao.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

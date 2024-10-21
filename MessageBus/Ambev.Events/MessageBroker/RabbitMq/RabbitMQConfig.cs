@@ -1,6 +1,6 @@
 ﻿using RabbitMQ.Client;
 
-namespace Ambev.MessageBus.MessageBroker.RabbitMq
+namespace Ambev.EventoMenssage.MessageBroker.RabbitMq
 {
     public class RabbitMQConfig
     {

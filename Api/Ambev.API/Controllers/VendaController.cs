@@ -1,8 +1,8 @@
 ﻿using Ambev.API.Services.Dtos;
 using Ambev.API.Services.Interfaces;
 using Ambev.Domain.Entities;
-using Ambev.MessageBus.Eventos;
-using Ambev.MessageBus.Publicacao.Services;
+using Ambev.EventoMenssage.Eventos;
+using Ambev.EventoMenssage.Publicacao.Services;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -21,6 +21,12 @@ namespace Ambev.API.Controllers
             _venda = venda;
             _evento = evento;
         }
+
+        public VendaController(IVendaService venda)
+        {
+            _venda = venda;
+        }
+
         [HttpGet("getAll")]
         public async Task<ActionResult<VendaDTO>> GetAll()
         {

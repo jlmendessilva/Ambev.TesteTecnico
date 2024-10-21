@@ -1,16 +1,16 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Ambev.API.Controllers;
+using Ambev.API.Services.Dtos;
+using Ambev.API.Services.Interfaces;
+using FluentAssertions;
+using Microsoft.AspNetCore.Mvc;
+using NSubstitute;
+using Xunit;
+
 namespace Ambev.UnitTests
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using Ambev.API.Controllers;
-    using Ambev.API.Services.Dtos;
-    using Ambev.API.Services.Interfaces;
-    using FluentAssertions;
-    using Microsoft.AspNetCore.Mvc;
-    using NSubstitute;
-    using Xunit;
-
     public class VendaControllerTests
     {
         private readonly IVendaService _vendaService;

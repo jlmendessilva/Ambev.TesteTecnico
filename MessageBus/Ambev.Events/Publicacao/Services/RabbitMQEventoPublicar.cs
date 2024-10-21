@@ -3,7 +3,7 @@ using System.Text;
 using System.Text.Json;
 
 
-namespace Ambev.MessageBus.Publicacao.Services
+namespace Ambev.EventoMenssage.Publicacao.Services
 {
     public class RabbitMQEventoPublicar : IEventoPublicacao
     {

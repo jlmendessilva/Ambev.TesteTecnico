@@ -1,5 +1,5 @@
 ﻿
-namespace Ambev.MessageBus.Eventos
+namespace Ambev.EventoMenssage.Eventos
 {
     public class CompraAlterada
     {
