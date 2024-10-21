@@ -1,5 +1,8 @@
 ﻿using Ambev.API.Services.Dtos;
 using Ambev.API.Services.Interfaces;
+using Ambev.Domain.Entities;
+using Ambev.MessageBus.Eventos;
+using Ambev.MessageBus.Publicacao.Services;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -10,10 +13,13 @@ namespace Ambev.API.Controllers
     public class VendaController : ControllerBase
     {
         private readonly IVendaService _venda;
+        private readonly IEventoPublicacao _evento;
 
-        public VendaController(IVendaService venda)
+
+        public VendaController(IVendaService venda, IEventoPublicacao evento)
         {
             _venda = venda;
+            _evento = evento;
         }
         [HttpGet("getAll")]
         public async Task<ActionResult<VendaDTO>> GetAll()
@@ -39,6 +45,14 @@ namespace Ambev.API.Controllers
 
             var venda = await _venda.Adicionar(vendaDto);
 
+            _evento.Publica(new CompraCriada
+            {
+                CompraId = venda.Id,
+                DataCompra = venda.DataCadastro,
+                ClienteId = venda.ClienteId
+
+            });
+
             return Ok(venda);
         }
 
@@ -46,7 +60,17 @@ namespace Ambev.API.Controllers
         [HttpPut("Update/{id}")]
         public async Task<ActionResult<VendaDTO>> Update(Guid id, VendaDTO vendaDto)
         {
-            return await _venda.Atualizar(id, vendaDto);
+            var venda = await _venda.Atualizar(id, vendaDto);
+
+            _evento.Publica(new CompraAlterada
+            {
+                CompraId = venda.Id,
+                DataAlteracao = venda.DataAtualizacao,
+                ClienteId = venda.ClienteId
+
+            });
+
+            return Ok(venda);
             
         }
 
@@ -54,6 +78,14 @@ namespace Ambev.API.Controllers
         public async Task<ActionResult> Delete(Guid id)
         {
             await _venda.Delete(id);
+
+            _evento.Publica(new CompraCancelada
+            {
+                CompraId = id,
+                DataCancelamento = DateTime.Now,
+
+            });
+
             return NoContent();
         }
 
