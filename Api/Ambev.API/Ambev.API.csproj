@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Ambev.Data\Ambev.Data.csproj" />
+    <ProjectReference Include="..\..\MessageBus\Ambev.Events\Ambev.EventoMessage.csproj" />
   </ItemGroup>
 
 
