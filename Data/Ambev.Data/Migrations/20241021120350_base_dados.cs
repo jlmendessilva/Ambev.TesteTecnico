@@ -1,12 +1,13 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace Ambev.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class initial_base : Migration
+    public partial class base_dados : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,11 +17,15 @@ namespace Ambev.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Data = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    Numero = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    DataCadastro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    DataAtualizacao = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ClienteId = table.Column<Guid>(type: "uuid", nullable: false),
                     ValorTotal = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
                     Filial = table.Column<Guid>(type: "uuid", nullable: false),
-                    Cancelado = table.Column<bool>(type: "boolean", nullable: false)
+                    Cancelado = table.Column<bool>(type: "boolean", nullable: false),
+                    Finalizada = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -34,7 +39,7 @@ namespace Ambev.Data.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     VendaId = table.Column<Guid>(type: "uuid", nullable: false),
                     ProdutoId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Quantidade = table.Column<int>(type: "integer", nullable: false),
+                    Quantidade = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
                     ValorUnitario = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
                     Desconto = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false)
                 },

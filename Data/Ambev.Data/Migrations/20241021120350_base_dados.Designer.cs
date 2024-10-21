@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Ambev.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241017204906_atualizacao_campos_tabela_venda")]
-    partial class atualizacao_campos_tabela_venda
+    [Migration("20241021120350_base_dados")]
+    partial class base_dados
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -94,6 +94,13 @@ namespace Ambev.Data.Migrations
                     b.Property<bool>("Finalizada")
                         .HasColumnType("boolean")
                         .HasAnnotation("Relational:JsonPropertyName", "finalizada");
+
+                    b.Property<int>("Numero")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Relational:JsonPropertyName", "numero");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Numero"));
 
                     b.Property<decimal>("ValorTotal")
                         .HasPrecision(10, 2)
