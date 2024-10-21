@@ -45,7 +45,7 @@ namespace Ambev.API.Controllers
 
             var venda = await _venda.Adicionar(vendaDto);
 
-            _evento.Publica(new CompraCriada
+            _evento.Publica("compraCriadaFila", new CompraCriada
             {
                 CompraId = venda.Id,
                 DataCompra = venda.DataCadastro,
@@ -62,7 +62,7 @@ namespace Ambev.API.Controllers
         {
             var venda = await _venda.Atualizar(id, vendaDto);
 
-            _evento.Publica(new CompraAlterada
+            _evento.Publica("compraAlteradaFila",new CompraAlterada
             {
                 CompraId = venda.Id,
                 DataAlteracao = venda.DataAtualizacao,
@@ -79,7 +79,7 @@ namespace Ambev.API.Controllers
         {
             await _venda.Delete(id);
 
-            _evento.Publica(new CompraCancelada
+            _evento.Publica("compraCanceladaFila",new CompraCancelada
             {
                 CompraId = id,
                 DataCancelamento = DateTime.Now,

@@ -17,12 +17,12 @@ builder.Services.AddScoped<IVendaService, VendaService>();
 var rabbitMQConfig = new RabbitMQConfig
 {
     HostName = "amqps://dyjzckeu:Gm1AhedFvjs3qYXoG6a14_DJFaR3RbrR@moose.rmq.cloudamqp.com/dyjzckeu",
-    UserName = "dyjzckeu",
+    UserName = "dyjzckeu:dyjzckeu",
     Password = "Gm1AhedFvjs3qYXoG6a14_DJFaR3RbrR"
 };
 var connection = RabbitMQConnectionFactory.GetConnection(rabbitMQConfig);
 
-builder.Services.AddSingleton<IEventoPublicacao, EventoPublicacao>();
+builder.Services.AddSingleton<IEventoPublicacao, RabbitMQEventoPublicar>();
 builder.Services.AddLogging();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
