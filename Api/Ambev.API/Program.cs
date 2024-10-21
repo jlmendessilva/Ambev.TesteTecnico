@@ -1,9 +1,9 @@
 using Ambev.API.Services;
 using Ambev.API.Services.Interfaces;
 using Ambev.API.Services.Mappings;
-using Ambev.Data.Interfaces;
-using Ambev.Data.Repositories;
 using Ambev.IOC;
+using Ambev.MessageBus.MessageBroker.RabbitMq;
+using Ambev.MessageBus.Publicacao.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +13,17 @@ builder.Services.AddControllers();
 
 builder.Services.AddAutoMapper(typeof(MapEntitiesDto));
 builder.Services.AddScoped<IVendaService, VendaService>();
+
+var rabbitMQConfig = new RabbitMQConfig
+{
+    HostName = "amqps://dyjzckeu:Gm1AhedFvjs3qYXoG6a14_DJFaR3RbrR@moose.rmq.cloudamqp.com/dyjzckeu",
+    UserName = "dyjzckeu",
+    Password = "Gm1AhedFvjs3qYXoG6a14_DJFaR3RbrR"
+};
+var connection = RabbitMQConnectionFactory.GetConnection(rabbitMQConfig);
+
+builder.Services.AddSingleton<IEventoPublicacao, EventoPublicacao>();
+builder.Services.AddLogging();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
