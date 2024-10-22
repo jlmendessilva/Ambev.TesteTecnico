@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Ambev.API.Controllers;
 using Ambev.API.Services.Dtos;
 using Ambev.API.Services.Interfaces;
+using Ambev.Eventos.Publicacao;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
@@ -14,12 +15,14 @@ namespace Ambev.UnitTests
     public class VendaControllerTests
     {
         private readonly IVendaService _vendaService;
+        private readonly IEventoPublicacao _eventoPublicacao;
         private readonly VendaController _controller;
 
         public VendaControllerTests()
         {
             _vendaService = Substitute.For<IVendaService>();
-            _controller = new VendaController(_vendaService);
+            _eventoPublicacao = Substitute.For<IEventoPublicacao>();
+            _controller = new VendaController(_vendaService, _eventoPublicacao);
         }
 
         [Fact]
