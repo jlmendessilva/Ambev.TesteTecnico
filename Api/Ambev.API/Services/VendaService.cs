@@ -70,5 +70,12 @@ namespace Ambev.API.Services
 
             return _mapper.Map<VendaDTO>(vendaEntities);
         }
+
+        public async Task<VendaDTO> DeleteItem(Guid vendaID, Guid itemId)
+        {
+             var vendaEntities = await _vendarepositorio.DeleteItemAsync(vendaID, itemId);
+
+            return _mapper.Map<VendaDTO>(vendaEntities);
+        }
     }
 }

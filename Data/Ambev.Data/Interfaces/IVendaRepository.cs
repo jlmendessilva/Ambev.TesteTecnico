@@ -11,6 +11,7 @@ namespace Ambev.Data.Interfaces
         Task<Venda> UpdateAsync(Guid id, Venda venda);
         Task DeleteAsync(Guid id);
         Task<Venda> AddItemAsync(Guid id, IEnumerable<ItemVenda> itens);
+        Task<Venda> DeleteItemAsync(Guid vendaID, Guid itemId);
 
     }
 }

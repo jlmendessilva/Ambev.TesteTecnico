@@ -86,5 +86,24 @@ namespace Ambev.Data.Repositories
 
         }
 
+        public async Task<Venda> DeleteItemAsync(Guid vendaID, Guid itemId)
+        {
+            var venda = await GetByIdAsync(vendaID);
+
+            if (venda == null)
+                throw new Exception("Venda não encontrada.");
+
+            var itemToRemove = venda.Itens.FirstOrDefault(item => item.Id == itemId);
+
+            if (itemToRemove == null)
+                throw new Exception("Item não encontrado na venda.");
+
+            venda.Itens.Remove(itemToRemove);
+
+            await _context.SaveChangesAsync();
+
+            return venda;
+        }
+
     }
 }
