@@ -51,7 +51,7 @@ Se fizer o código, é dispensável publicar em algum Message Broker (Rabbit ou 
       "Desconto": 12
     }
   ]
-}
+}```
 
 ### Observações
 Executando o endpoint /getAll, é possível obter elementos para utilização nos outros endpoints, como:
