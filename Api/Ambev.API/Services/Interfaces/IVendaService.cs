@@ -1,6 +1,5 @@
 ﻿using Ambev.API.Services.Dtos;
 
-
 namespace Ambev.API.Services.Interfaces
 {
     public interface IVendaService
@@ -11,6 +10,7 @@ namespace Ambev.API.Services.Interfaces
         Task<IEnumerable<VendaDTO>> BuscarTodos();
         Task<VendaDTO> Atualizar(Guid id, VendaDTO vendaDto);
         Task<VendaDTO> AdicionarItem(Guid id, IEnumerable<ItemVendaDTO> itens);
+        Task<VendaDTO> DeleteItem(Guid vendaID, Guid itemId);
         Task Delete(Guid id);
     }
 }
