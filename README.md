@@ -26,6 +26,12 @@ Se fizer o código, é dispensável publicar em algum Message Broker (Rabbit ou 
 - `Ambev.API` - Manipula os registros de vendas
 - `Ambev.ConsumerQueue` - Lê as filas `CompraCriada`, `CompraAlterada`, `CompraCancelada`, `ItemCancelado`
 
+### Observações
+Executando o endpoint /getAll, é possível obter elementos para utilização nos outros endpoints, como:
+- Id da Venda
+- Id do Item
+- JSON para atualização
+
 ### JSON de requisição inicial para criar uma venda:
 ```json
 {
@@ -51,11 +57,5 @@ Se fizer o código, é dispensável publicar em algum Message Broker (Rabbit ou 
       "Desconto": 12
     }
   ]
-}```
+}
 
-### Observações
-Executando o endpoint /getAll, é possível obter elementos para utilização nos outros endpoints, como:
-
-- Id da Venda
-- Id do Item
-- JSON para atualização
